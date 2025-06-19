@@ -1,7 +1,178 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
+  /* The width and height include content + padding + border.
+    The total size of the element stays as you set it. */
+  box-sizing: border-box;
 }
-body{
-    /* background-color: red; */
+.main {
+  font-family: "Ubuntu", sans-serif;
+  /* rem is * root element's font size. html root element <html> usually has a font size of 16px.   */
+  font-size: 1.05rem;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(to right, rgb(20, 1, 143), rgb(199, 0, 83));
+  overflow: hidden;
+
+  /* parent of information, making its position relative to the information element can be positioned relative to it. */
+  position: relative;
+}
+
+nav {
+  width: 80%;
+  display: flex;
+  margin: 20px auto;
+  align-items: center;
+  font-weight: 550;
+  /* justify-content: space-between; you can use this aswell but this time we are gonna use a different way of performing the same task */
+  position: sticky;
+  z-index: 1;
+}
+
+nav h2 {
+  font-size: large;
+}
+
+.nav-links {
+  /* flex shorthand property is used on flex items (not the container). It defines how the item grows, shrinks, and what its base size is inside a flex container. the default values for each, grows:shrinks:basis are 0:1:auto */
+  flex: 1;
+  text-align: right;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 20%;
+  height: 20%;
+  margin-right: 12px;
+}
+.nav-links ul li {
+  /* inline-block is a CSS display value that makes an element behave like an inline element(it flows inline with text), but still allows block-level styling like width, height, padding, and margin. */
+  display: inline-block;
+  padding: 0 2rem;
+}
+
+.nav-links ul a {
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.nav-links ul a:hover {
+  color: rgba(233, 218, 11, 0.661);
+}
+
+.information {
+  width: 650px;
+  height: 650px;
+  /* the position absolute rule lets you place an element exactly where you want it on the page or inside a container -- removed from the normal flow of the document.
+    The element is positioned relative to the nearest positioned ancestor(e.i. the closest parent with position: relative, absolute, or fixed.
+    if no such parent exists, it's positioned relatice to the <html>(the page itself) */
+  position: absolute;
+  top: 50%;
+  left: -12%;
+  transform: translateY(-50%);
+  /* background-color: #fff; */
+}
+
+#circle {
+  width: 650px;
+  height: 650px;
+  /* background: rgb(227, 227, 227); */
+  position: absolute;
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  transform: rotate(0deg);
+  transition: 1s;
+}
+
+.feature {
+  position: absolute;
+  color: white;
+  display: flex;
+}
+
+.feature img {
+  width: 70px;
+}
+
+.feature div {
+  margin-left: 12px;
+}
+
+.feature div a {
+  margin-top: 8px;
+}
+.one {
+  top: 290px;
+  right: 30px;
+}
+
+.two {
+  top: 47px;
+  left: 186px;
+  transform: rotate(-90deg);
+}
+.three {
+  top: 289px;
+  left: -1px;
+    transform: rotate(-180deg);
+}
+.four {
+  top: 506px;
+  left: 215px;
+  transform: rotate(-270deg);
+}
+
+.pc {
+  width: 300px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); 
+  left: 145px;
+  z-index: 1;
+}
+
+.control {
+    position: absolute;
+    top: 50%;
+    right: 15%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+.control img  {
+    width: 15%;
+}
+
+.control h3{
+    color: white;
+    margin: 20px 0;
+}
+
+#upBtn {
+    cursor: pointer;
+}
+#downBtn {
+    cursor: pointer;
+    transform: rotate(-180deg);
+}
+
+.overlay {
+    width: 0;
+    height: 0;
+    border-top: 320px solid #fff;
+    border-right: 320px solid transparent;
+    border-bottom: 320px solid #fff;
+    border-left: 320px solid #fff;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
