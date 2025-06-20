@@ -301,7 +301,6 @@ nav button #menuButton {
 
 .feedback {
     padding: 110px 85px;
-    margin-bottom: 900px;
 }
 
 .feedback .customers{
@@ -346,4 +345,50 @@ nav button #menuButton {
     height: 40px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+.feedback .customers .item .user h5 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+.feedback .customers .item .user p {
+    font-size: 12px;
+}
+
+footer {
+    background-color: #deebee;
+    padding: 85px;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .top, footer .bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer .top .social-links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+}
+
+footer .separator{
+    width: 100%;
+    height: 1px;
+    background-color: #282938;
+    margin: 30px 0 20px;
+}
+
+footer .bottom p {
+ font-size: 12px;   
+}
+
+footer .bottom .links a {
+    font-size: 12px;
+    margin-left: 14px;
 }
