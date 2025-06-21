@@ -392,3 +392,25 @@ footer .bottom .links a {
     font-size: 12px;
     margin-left: 14px;
 }
+
+
+/* Responsive design */
+
+@media screen and (max-width: 1200px) { 
+
+    .main .left h5 {
+        font-size: 18px;
+    }
+
+    .main .left h3 {
+        font-size: 36px;
+    }
+
+    .main .left p {
+        font-size: 18px;
+    }
+
+    .main .right img{
+        width: 380px;
+    }
+}
