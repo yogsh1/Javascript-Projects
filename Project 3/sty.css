@@ -1,0 +1,224 @@
+/* :before and :after are pseudo-elements used in css to insert content before or after an element. They are not real HTML, but they act like part of page.
+pseudo elements can also have padding, margin and bo-sizing. if you don't reset them they might behave differently from the rest of the elements. */
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    background: linear-gradient(rgb(19, 3, 239), rgb(1, 219, 253) 70%);
+}
+
+.app{
+    /* this CSS min() function chooses the smaller of the two values */
+    font-family: "Poppins", sans-serif;
+    width: min(95vw, 500px);
+    /*Position absolute removes the element from the normal flow of the document and positions it exactly where you want it.*/
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 30px;
+
+}
+.container {
+    padding: 30px 40px;
+    border: 2px solid black;
+    background-color: white;
+    /* box-shadow: offset-x offset-y blur-radius spread-radius color; <-- SYNTAX */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-radius: 0.8em;
+}
+
+#wrapper {
+    /* position relative allows absolutely positioned child element to use #wrapper as a reference. it does not move the wrapper itself, unless you also use top, left etc. */
+    position: relative;
+    border-radius: 5px;
+    /* turns the #wrapper into a CSS Grid Container */
+    display: grid;
+    /* defines 2 coloumns, first columns takes 8 parts and second column takes 4 parts, total 8+4=12 parts so first column = 2/3, second=1/3 */
+    grid-template-columns: 8fr 4fr;
+    /* adds a gap between grid items(both horizontally and vertically. here between input field and add button. */
+    gap: 1em;
+}
+
+#wrapper input {
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    font-size: 0.9em;
+    border: none;
+    border-bottom: 2px solid #d1d3d4;
+    padding: 1em 0.5em;
+}
+
+#wrapper input:focus {
+    /* Removes the default browser blue, black or orange glow around the input. Ofter done when applying custom styles. */
+    outline: none;
+    /* Changin the input's border color to soft blue when focused. Makes it look like it's active or selected. Here it make the only bottom border soft blue cuz we did none to other borders. */
+    border-color: #5a95ff;
+}
+
+#wrapper button {
+    position: relative;
+    border-radius: 5px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-size: 1em;
+    background-color: #42ff58;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+}
+
+#tasks {
+    margin-top: 1em;
+    border-radius: 10px;
+    width: 100%;
+    position: relative;
+    padding: 1em 0.5em;
+}
+
+.task {
+    background-color: #ffffff;
+    /* border: 2px solid red;  test border */
+    padding: 0.8em 1em;
+    display: grid;
+    /* fr = fraction 1fr-small 8fr-larger 2fr-medium 2fr-medium */
+    grid-template-columns: 1fr 8fr 2fr 2fr;
+    gap: 1em;
+    border-radius: 0.5em;
+    box-shadow: 0 0.5em 1em rgba(0,0,0,0.5);
+    align-items: center;
+    cursor: pointer;
+}
+
+
+/* adds vertical spacing (margin-top) of 1em to every .task element except the first one.*/
+.task:not(:first-child) {
+    margin-top: 1em;
+}
+
+.task input[type="checkbox"] {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    /*This CSS rule removes the browser's default styling of form elements (like checkboxes, radio buttons, etc.)
+    Browsers give checkboxes and other form controls their own built-in look--which is different across browsers and systems. so instead of using the browsers deafult style we are taking full control of how the checkbox will look like.*/
+    appearance: none;
+    border: 2px solid #e1e1e1;
+    /* turn the square border to a circle */
+    border-radius: 50%;
+    
+
+    /* flexbox way to center the check mark */
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    
+    /* display grid way to center the check mark */
+    /* display: grid;
+    place-items: center; */
+    
+    /* Line-Height way to center the check mark */
+    /* let;s say the width and height of the checkbox is 20px then */
+    /* line-height: 20px;
+    text-align: center; */
+    /* it doesn;t work here but in case we knew the height of the checkbox */
+    
+    /* but since we are using transform property we will not use the alterantives. */
+}
+
+
+/* tick mark centered */
+.task input[type="checkbox"]:before {
+    content: "";
+    /* absolute to move the tick mark willingly */
+    position: absolute;
+
+    /* with the top and left combination transform is used to center the check mark inside the checkbox. respectivally you can also use flexbox or grid layout to center the mark. or line-height plus text-align(for small fixed-size boxes)-works if you know the height of the checkbox.*/
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+
+    /* flexbox way --> check parent above ^^^*/
+
+    /* grid way --> check parent above ^^^ same */
+
+    /* Line-Height + Text-Align way --> check parent above ^^^ same */
+    /* all for the parent element */
+
+
+}
+.task input[type="checkbox"]:checked {
+    background-color: #5a95ff;
+    border-color: #5a95ff;
+}
+
+/* Tick mark implemented here but we centered it above already */
+.task input[type="checkbox"]:checked:before {
+    /* adds a Font Awesome checkmark icon inside the custom=styled checkbox when it is checked. */
+    position: absolute;
+    /* This is a Unicode value for a checkmark icon in Font Awesome. It only works if Font Awesome is correctly loaded. */
+    content: "\f00c";
+    color: #ffffff;
+    font-size: 0.8em;
+    /* Tells the browser to use the Font Awesome icon font. */
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+.task span {
+    font-size: 15px;
+    font-weight: 400;
+    /* Breaks long wordsor strings anywhere, even in the middle.
+    Usedful when dealing with things like: long-urls, code, strings with no spaces. Without the word-break the text might overflow the container or cause horizontal scroll. */
+    word-break: break-all;
+
+    /* you can try this aswell for better readability */
+    /* word-break: break-word;
+    overflow-wrap: break-word; */
+}
+
+.task button {
+    color: #ffffff;
+    width: 100%;
+    padding: 1em 0;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.edit {
+    background-color: #5a95ff;
+}
+
+.delete {
+    background-color: #ff5c5c;
+}
+
+#pending-tasks span {
+    color: #5a95ff;
+}
+
+.completed {
+    /* horizontal line over the comepleted tasks. */
+    text-decoration: line-through;
+    color: #a0a0a0;
+}
+
+#error {
+    text-align: center;
+    /* error message disappears */
+    display: none;
+    background-color: #ffffff;
+    color: #ff5c5c;
+    margin-top: 1.5em;
+    padding: 1em 0;
+    border-radius: 0.5em;
+}
